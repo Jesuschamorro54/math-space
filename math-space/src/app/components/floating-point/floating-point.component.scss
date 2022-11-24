@@ -1,0 +1,69 @@
+@import "../../app.component.scss";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.card .card-body {
+    .option {
+        margin: 0 5px;
+        padding: 4px;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        width: 146px;
+    }
+
+    .button {
+        cursor: pointer;
+        width: auto;
+        align-self: center;
+        padding: 5px;
+        transition: .1s all;
+    }
+
+    .button:hover {
+        background: #f6f9ff;
+        border-radius: 25px;
+        color: $secondary-text;
+    }
+
+    .switch-controller {
+        display: flex;
+        justify-content: center;
+        margin: 8px 0px 20px;
+
+        i {
+            vertical-align: text-bottom;
+            margin: 0;
+        }
+
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .custom-select {
+            min-width: 114px;
+            margin-right: 25px;
+        }
+    }
+
+    
+    form {
+        input.decimal-number {
+            min-width: 150px;
+            width: 20%;
+        }
+
+        input.sign-number {
+            width: 45px;
+        }
+        input.exponent-number {
+            width: 170px;
+        }
+        input.mantissa-number {}
+
+    }
+    
+}

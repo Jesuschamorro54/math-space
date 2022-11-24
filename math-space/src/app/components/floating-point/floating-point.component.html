@@ -1,0 +1,58 @@
+
+<header>
+    <div class="pagetitle"><h1>Punto Flotante</h1></div>
+    <button class="green">Convertir</button>
+</header>
+
+
+<section class="">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="switch-controller" [ngClass]="{'reverse': !decimalToFloat}">
+                <div class="option"><h5 class="card-title">Decimal</h5></div>
+                <div class="button" (click)="decimalToFloat = !decimalToFloat"><i class="icon-arrow-change"></i></div>
+                <div class="option"><h5 class="card-title">Punto flotante</h5></div>
+
+                <div class="custom-select" *ngIf="decimalToFloat">
+                    <label class="select_list_2 dropdown"
+                        (click)="ddownMethod.checked ? ddownMethod.checked = false : ddownMethod.checked = true;"
+                        (clickOutsideDdown)="ddownMethod.checked = false;">
+
+                        <span>{{precision[selected].label }}</span>
+                        <i class="icon-arrow-down"></i>
+                        <input type="checkbox" #ddownMethod>
+
+                        <ul class="dropdown-list" *ngIf="ddownMethod.checked">
+                            <li class="item" (click)="selected = 0 ">Precisión</li>
+                            <li class="item" (click)="selected = 1 ">Simple precisión</li>
+                            <li class="item" (click)="selected = 2">Doble precisión</li>
+                        </ul>
+                    </label>
+                </div>
+
+            </div>
+
+            <form action="">
+
+                <div *ngIf="decimalToFloat">
+                    <input class="decimal-number" type="text" placeholder="Numero decimal">
+
+                    <div style="display: flex;">
+                        <input class="sign-number" disabled type="text" placeholder="Singno">
+                        <input class="exponent-number" disabled type="text" placeholder="Exponente Binario">
+                        <input class="mantissa-number" disabled type="text" placeholder="Mantisa">
+                    </div>
+
+                </div>
+
+                <div *ngIf="!decimalToFloat" style="display: flex;">
+                    <input class="sign-number" type="text" placeholder="Singno">
+                    <input class="exponent-number" type="text" placeholder="Exponente Binario">
+                    <input class="mantissa-number" type="text" placeholder="Mantisa">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</section>
