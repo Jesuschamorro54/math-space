@@ -1,11 +1,25 @@
-from functions.methods import *
-from functions.colors import G, RS
-from functions import config
+from methods import Calculate
+
+
+# Main debe recibir como parametros 
+# number: el numero que se va a convertir  
+# type: numero que se pasa (decimal o binario)
+# 
+#   
+#
+def main(type):
+
+    number:str = calculate.get_number()
+
+    # Para saber si el numero es 
+    if 'decimal' in type:
+        calculate.set_params("doble")
+        save_in_memory(number) 
+    else:
+        revert(number)
+
 
 def save_in_memory(number:str):
-    # Obtener parametros si es necesario+
-    get_params()
-
 
     number = number.split(".") if "." in number else [number, "0"]
 
@@ -15,42 +29,43 @@ def save_in_memory(number:str):
         x_float =  float("0." + number[1])
 
 
-        integer_part = to_binary_integer(abs(x_int))
+        integer_part = calculate.to_binary_integer(abs(x_int))
 
-        float_part = to_binary_float(x_float)
+        float_part = calculate.to_binary_float(x_float)
 
         binary_number = f"{integer_part}.{float_part}"
 
-        normalized_number, e = to_normalized_form(binary_number)
+        normalized_number, e = calculate.to_normalized_form(binary_number)
 
-        exp = get_exp(e)
+        exp = calculate.get_exp(e)
 
         mantissa = normalized_number.split(".")[1]
 
-        sleep(1)        
+        print(f"\n|RESULTADO| -> ", end="")
+        result = f"{calculate.x_sign}{exp}{mantissa}"
+        r = calculate.print_binary_number(result, True)
 
-        print(f"{G}\n|RESULTADO| -> {RS}", end="")
-        result = f"{config.x_sign}{exp}{mantissa}"
-        print_binary_number(result, True)
+        return r
 
 
 def revert(binary: str):
     
     binary = binary.split(" ")
-    binaryMax = major(binary[2])
-    binaryMin = minor(binary[2])
+    binaryMax = calculate.major(binary[2])
+    binaryMin = calculate.minor(binary[2])
 
 
     if binary:
         # Obtener e
-        e = get_e(binary[1])
+        decimal = ''
+        e = calculate.get_e(binary[1])
 
         # Pasar a formula normalizada y obtener el numero en formato punto flotante
         data = {'sign': binary[0], 'e': e}
 
-        float_pointMax, e = to_normalized_form(binaryMax, data)
-        float_point, e = to_normalized_form(binary[2], data)
-        float_pointMin, e = to_normalized_form(binaryMin, data)
+        float_pointMax, e = calculate.to_normalized_form(binaryMax, data)
+        float_point, e = calculate.to_normalized_form(binary[2], data)
+        float_pointMin, e = calculate.to_normalized_form(binaryMin, data)
 
 
         _intMax = float_pointMax.split(".")[0]
@@ -68,28 +83,26 @@ def revert(binary: str):
 
         print(f"PUNTO FLOTANTE: {sign}{_int}.{_float}")
 
-        _floatMax = to_decimal(_floatMax, True)
-        _intMax = to_decimal(_intMax, False) + _floatMax
+        _floatMax = calculate.to_decimal(_floatMax, True)
+        _intMax = calculate.to_decimal(_intMax, False) + _floatMax
 
-        _float = to_decimal(_float, True)
-        _int = to_decimal(_int, False) + + _float
+        _float = calculate.to_decimal(_float, True)
+        _int = calculate.to_decimal(_int, False) + + _float
 
-        _floatMin = to_decimal(_floatMin, True)
-        _intMin = to_decimal(_intMin, False) + _floatMin
+        _floatMin = calculate.to_decimal(_floatMin, True)
+        _intMin = calculate.to_decimal(_intMin, False) + _floatMin
         
 
         # Convertir a decimal
-        print(f"{G}\n|RESULTADO        | -> {sign}{_int}{RS}\n")
-        print(f"{G}\n|NUMERO INFERIOR  | -> {sign}{_intMin}{RS}\n")
-        print(f"{G}\n|NUMERO SUPERIOR  | -> {sign}{_intMax}{RS}\n\n")
+        print(f"\n|RESULTADO        | -> {sign}{_int}\n")
+        print(f"\n|NUMERO INFERIOR  | -> {sign}{_intMin}\n")
+        print(f"\n|NUMERO SUPERIOR  | -> {sign}{_intMax}\n\n")
+
+        decimal = sign + _int
+
+        return decimal
 
 
 
-if __name__ == "__main__":
-
-    number:str = get_number()
-
-    if "." in number or len(number.split(" ")) == 1:
-        save_in_memory(number) 
-    else:
-        revert(number)
+calculate = Calculate()
+main('binary')

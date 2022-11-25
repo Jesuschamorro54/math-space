@@ -7,6 +7,8 @@ import { FloatingPointComponent } from './components/floating-point/floating-poi
 import { GaussSeidelComponent } from './components/gauss-seidel/gauss-seidel.component';
 import { GaussJordanComponent } from './components/gauss-jordan/gauss-jordan.component';
 import { InterpolationComponent } from './components/interpolation/interpolation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { InterpolationComponent } from './components/interpolation/interpolation
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

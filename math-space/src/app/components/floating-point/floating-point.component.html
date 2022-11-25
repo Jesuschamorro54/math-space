@@ -1,7 +1,7 @@
 
 <header>
     <div class="pagetitle"><h1>Punto Flotante</h1></div>
-    <button class="green">Convertir</button>
+    <button class="green" (click)="convert()">Convertir</button>
 </header>
 
 
@@ -36,12 +36,12 @@
             <form action="">
 
                 <div *ngIf="decimalToFloat">
-                    <input class="decimal-number" type="text" placeholder="Numero decimal">
+                    <input class="decimal-number" name="number" type="text" placeholder="Numero decimal" [(ngModel)]="decimal_number">
 
                     <div style="display: flex;">
-                        <input class="sign-number" disabled type="text" placeholder="Singno">
-                        <input class="exponent-number" disabled type="text" placeholder="Exponente Binario">
-                        <input class="mantissa-number" disabled type="text" placeholder="Mantisa">
+                        <input name="a" class="sign-number" disabled type="text" placeholder="Singno" [(ngModel)]="binary_number[0]">
+                        <input name="ab" class="exponent-number" disabled type="text" placeholder="Exponente Binario" [(ngModel)]="binary_number[1]">
+                        <input name="ac" class="mantissa-number" disabled type="text" placeholder="Mantisa" [(ngModel)]="binary_number[2]">
                     </div>
 
                 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'floating-point',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FloatingPointComponent implements OnInit {
 
-  decimalToFloat: boolean  = true;
+  decimal_number = ''
+
+  binary_number = ['', '', '']
+
+  decimalToFloat: boolean  = true
   precision = [
     {value: 'none', label: 'Precisión'}, // 0
     {value:'simple', label: 'Simple precisión'},  // 1
@@ -15,13 +20,35 @@ export class FloatingPointComponent implements OnInit {
   ]
   selected = 0
 
-  constructor() { }
+  constructor(
+    public _appService: AppService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  open (as:any){
-    console.log(as)
+  convert (){
+    let body = {
+      data: {
+        precision: this.precision[this.selected],
+        type: (this.decimalToFloat)  ? 'decimal' : 'binary',
+        number: this.decimal_number
+      }
+    }
+
+    this._appService.convertNumber(body).subscribe(response => {
+
+      let array_result = []
+      const {valid, result} = response
+
+      if (valid) {
+        if (this.decimalToFloat) {
+          this.binary_number = result.split(" ")
+        }
+      }
+
+    })
+
   }
 
 }

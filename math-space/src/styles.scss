@@ -51,6 +51,7 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="date"] {
+
 	width: 90%;
 	height: 20px;
 	background: #fff;
@@ -62,6 +63,7 @@ input[type="date"] {
 	outline: none;
 	border-radius: 5px;
   border: 1px solid #ced4da;
+  font-size: 18px;
   -moz-appearance: textfield;
 
   &:focus {
