@@ -1,18 +1,6 @@
 @import "../../app.component.scss";
 @import "../../styles/spinners";
 
-header {
-    display: flex;
-    min-width: 34.8rem;
-    justify-content: space-between;
-    margin-bottom: 10px;
-
-    .spinner.outside {
-        top: -15px;
-        right: 44px;
-    }
-}
-
 .card .card-body {
     .option {
         margin: 0 5px;
@@ -36,7 +24,7 @@ header {
         color: $secondary-text;
     }
 
-    .switch-controller {
+    .controller {
         display: flex;
         justify-content: center;
         margin: 8px 6px 20px;

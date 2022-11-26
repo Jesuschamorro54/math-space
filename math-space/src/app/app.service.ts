@@ -35,6 +35,19 @@ export class AppService {
     );
   }
 
+  public resolveGaussJordan(body:any): Observable<any> {
+    return this._http.post(this.ApiUrl + "/gauss-jordan", body, this.getHeaders()).pipe(
+      map((response:any) =>{
+
+        const {status, data, is_valid} = response
+        return {valid: status, result: data, Mstate: is_valid}
+
+      }),
+      
+      catchError(this.handleError<any>('getLoans', []))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

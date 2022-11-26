@@ -10,6 +10,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    header {
+        display: flex;
+        min-width: 34.8rem;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    
+        .spinner.outside {
+            top: -15px;
+            right: 44px;
+        }
+    }
+
     .pagetitle {
         
         span {

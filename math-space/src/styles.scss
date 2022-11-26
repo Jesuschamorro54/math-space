@@ -93,7 +93,7 @@ button {
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: red;
+  background-color: #ccc;
   transition: 200ms all;
 
   &.green {
@@ -102,6 +102,14 @@ button {
   }
   &.green:hover {
     background-color: #0fa84a;
+  }
+
+  &.blue {
+    background-color: $primary-color;
+    color: white;
+  }
+  &.blue:hover {
+    background-color: $secondary-color;
   }
 
 }
@@ -135,6 +143,10 @@ input::-webkit-inner-spin-button {
 
 .select_list_2 {
 
+  &:hover {
+    border: 1px solid #ddd;
+  }
+
   input {
     display: none;
   }
@@ -150,14 +162,17 @@ input::-webkit-inner-spin-button {
   align-items: center;
   padding: 0 10px;
   color: black;
+  border: 1px solid transparent;
   // background-color: transparent;
   background-color: $light-color;
+  transition: 300ms all;
 
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 
   &.error {
     border-left: 4px solid red;
