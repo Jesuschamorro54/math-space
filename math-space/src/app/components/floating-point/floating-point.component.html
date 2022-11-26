@@ -1,7 +1,15 @@
 
 <header>
     <div class="pagetitle"><h1>Punto Flotante</h1></div>
-    <button class="green" (click)="convert()">Convertir</button>
+    <button class="green" (click)="convert()">
+        <div class="spinner outside primary" *ngIf="sending">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <span>Convertir</span>
+    </button>
 </header>
 
 
@@ -33,24 +41,23 @@
 
             </div>
 
-            <form action="">
+            <form [ngClass]="{'reverse': !decimalToFloat}">
 
-                <div *ngIf="decimalToFloat">
-                    <input class="decimal-number" name="number" type="text" placeholder="Numero decimal" [(ngModel)]="decimal_number">
-
-                    <div style="display: flex;">
-                        <input name="a" class="sign-number" disabled type="text" placeholder="Singno" [(ngModel)]="binary_number[0]">
-                        <input name="ab" class="exponent-number" disabled type="text" placeholder="Exponente Binario" [(ngModel)]="binary_number[1]">
-                        <input name="ac" class="mantissa-number" disabled type="text" placeholder="Mantisa" [(ngModel)]="binary_number[2]">
-                    </div>
-
+                <div>
+                    <input class="decimal-number" name="number" [disabled]="!decimalToFloat" type="text" placeholder="Numero decimal" [(ngModel)]="decimal_number">
                 </div>
 
-                <div *ngIf="!decimalToFloat" style="display: flex;">
+                <div style="display: flex;">
+                    <input name="sign" class="sign-number"  [disabled]="decimalToFloat" type="text" placeholder="Singno" [(ngModel)]="binary_number[0]">
+                    <input name="exp" class="exponent-number" [disabled]="decimalToFloat" type="text" placeholder="Exponente Binario" [(ngModel)]="binary_number[1]">
+                    <input name="mantissa" class="mantissa-number" [disabled]="decimalToFloat" type="text" placeholder="Mantisa" [(ngModel)]="binary_number[2]">
+                </div>
+
+                <!-- <div *ngIf="!decimalToFloat" style="display: flex;">
                     <input class="sign-number" type="text" placeholder="Singno">
                     <input class="exponent-number" type="text" placeholder="Exponente Binario">
                     <input class="mantissa-number" type="text" placeholder="Mantisa">
-                </div>
+                </div> -->
                 
             </form>
         </div>

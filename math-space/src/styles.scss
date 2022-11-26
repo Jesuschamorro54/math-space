@@ -85,6 +85,8 @@ input[type="date"] {
 }
 
 button {
+  display: flex;
+  align-items: center;
   font-family: "Nunito", sans-serif;
   font-size: 14px;
   cursor: pointer;
@@ -104,13 +106,10 @@ button {
 
 }
 
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
 
 
 .card {

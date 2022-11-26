@@ -9,16 +9,17 @@ import { AppService } from 'src/app/app.service';
 export class FloatingPointComponent implements OnInit {
 
   decimal_number = ''
-
   binary_number = ['', '', '']
 
-  decimalToFloat: boolean  = true
+  decimalToFloat: boolean = true
   precision = [
-    {value: 'none', label: 'Precisión'}, // 0
-    {value:'simple', label: 'Simple precisión'},  // 1
-    {value: 'doble', label: 'Doble precisión'},  // 2
+    { value: 'none', label: 'Precisión' }, // 0
+    { value: 'simple', label: 'Simple precisión' },  // 1
+    { value: 'doble', label: 'Doble precisión' },  // 2
   ]
+
   selected = 0
+  sending = false
 
   constructor(
     public _appService: AppService
@@ -27,28 +28,35 @@ export class FloatingPointComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  convert (){
-    let body = {
-      data: {
-        precision: this.precision[this.selected],
-        type: (this.decimalToFloat)  ? 'decimal' : 'binary',
-        number: this.decimal_number
-      }
-    }
+  convert() {
 
-    this._appService.convertNumber(body).subscribe(response => {
+    let number = this.decimalToFloat ? this.decimal_number : this.binary_number.join(" ");
 
-      let array_result = []
-      const {valid, result} = response
+    if (!this.sending && number != '' && number != null) {
+      this.sending = true
 
-      if (valid) {
-        if (this.decimalToFloat) {
-          this.binary_number = result.split(" ")
+      let body = {
+        data: {
+          precision: this.precision[this.selected].value,
+          type: this.decimalToFloat ? 'decimal' : 'binary',
+          number: number
         }
       }
 
-    })
+      this._appService.convertNumber(body).subscribe(response => {
+        this.sending = false;
+        const { valid, result } = response
 
+        if (valid) {
+          if (this.decimalToFloat){
+            this.binary_number = result.split(" ")
+          }else{
+            this.decimal_number = result
+          }
+        }
+
+      })
+    }
   }
 
 }

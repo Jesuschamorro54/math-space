@@ -1,9 +1,16 @@
 @import "../../app.component.scss";
+@import "../../styles/spinners";
 
 header {
     display: flex;
+    min-width: 34.8rem;
     justify-content: space-between;
     margin-bottom: 10px;
+
+    .spinner.outside {
+        top: -15px;
+        right: 44px;
+    }
 }
 
 .card .card-body {
@@ -32,7 +39,7 @@ header {
     .switch-controller {
         display: flex;
         justify-content: center;
-        margin: 8px 0px 20px;
+        margin: 8px 6px 20px;
 
         i {
             vertical-align: text-bottom;
@@ -51,6 +58,8 @@ header {
 
     
     form {
+        display: flex;
+        flex-direction: column;
         input.decimal-number {
             min-width: 150px;
             width: 20%;
@@ -63,6 +72,10 @@ header {
             width: 170px;
         }
         input.mantissa-number {}
+
+        &.reverse {
+            flex-direction: column-reverse;
+        }
 
     }
     

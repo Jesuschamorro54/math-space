@@ -2,7 +2,7 @@ import numpy as np
 
 # from read import readMatrix
 
-def readMatrix(path="matrix.dat"):
+def readMatrix(path="C:\dev\Cursos\Metodos numericos\corte3\matrix2.dat"):
 
     file = open(f"{path}", "r")
 
@@ -69,7 +69,7 @@ print(f"{matriz}\n")
 #Vector solucion
 vector_solution=np.zeros(rows)
 
-tolera = 0.000001
+tolera = 0.00000001
 iteraciones=50
 
 diferencia = np.ones(rows, dtype=float)

@@ -1,5 +1,6 @@
  @import "./styles/icons";
  @import "./styles/colors";
+ @import "./styles/spinners";
 
 :host {
     font-family: "Nunito", sans-serif;
@@ -72,9 +73,9 @@ p {
     top: 60px;
     left: 0;
     bottom: 0;
-    width: 40%;
+    width: 18%;
     max-width: 300px;
-    min-width: 200px;
+    min-width: 160px;
     z-index: 40;
     transition: all 0.3s;
     padding: 20px;
@@ -115,9 +116,9 @@ p {
     margin-top: 60px;
     padding: 20px 30px;
     transition: all 0.3s;
-    margin-left: 333px;
+    margin-left: 22%;
 
-    @media (max-width: 736px) {
-        margin-left: 46%;
+    @media (max-width: 925px) {
+        margin-left: 184px;
     }
 }
