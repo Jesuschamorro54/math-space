@@ -2,6 +2,7 @@ import numpy as np
 
 # from read import readMatrix
 
+# Esta función es para leer el archivo .dat (puede ser un bloc de notas) y devolver la matriz
 def readMatrix(path="C:\dev\Cursos\Metodos numericos\corte3\matrix2.dat"):
 
     file = open(f"{path}", "r")
@@ -59,38 +60,47 @@ def readMatrix(path="C:\dev\Cursos\Metodos numericos\corte3\matrix2.dat"):
 
 
 # Obtener los valores de a matriz
-matriz, vector = readMatrix()
-rows = np.shape(matriz)[0]
-columns = np.shape(matriz)[1]
 
-print("Matriz Leida")
-print(f"{matriz}\n")
+matriz, vector = readMatrix()  # Atrapo la matriz
+
+rows = np.shape(matriz)[0]  # obtendo el numero de filas
+columns = np.shape(matriz)[1]  # obtendo el numero de columnas
+
+print("Matriz Leida: ")
+print(f"{matriz}\n")  # Imprimo la matriz que leí
 
 #Vector solucion
-vector_solution=np.zeros(rows)
+vector_solution=np.zeros(rows) # Creo un vector con ceros de tamaño de filas
 
 tolera = 0.00000001
-iteraciones=50
+iteraciones=50  # NUmero de iteraciones maximas en caso de no alcanzar la tolerancia
 
-diferencia = np.ones(rows, dtype=float)
+diferencia = np.ones(rows, dtype=float)  # Creo un vector con unos
 error = 2*tolera
 
 count = 0
 while not(error<=tolera or count>iteraciones):
-    print(f"Iteración: {count}")
+
+    print(f"Iteración: {count}")  # Imprimo por las iteraciones
+    
     # por fila
     for i in range(rows):
+        
+        suma = 0
+        
         # por columna
-        suma = 0 
         for j in range(columns):
-            # excepto diagonal de A
+            # Recorro toda la matriz excepto su diagonal para realizar las operaciones se deben hacer (Metodo de Seid)
             if (i!=j): 
                 suma = suma-matriz[i,j]*vector_solution[j]
         
+        # Realizo las operaciones necesarias lo guardo en nuevo y luego lo meto en vector_solución
+        # Este vector solución cambia su valor por cada iteración hasta que termine con todas las iteraciones o llegue a la tolerancia
         nuevo = (vector[i]+suma)/matriz[i,i]
         diferencia[i] = np.abs(nuevo-vector_solution[i])
         vector_solution[i] = nuevo
-    error = np.max(diferencia)
+
+    error = np.max(diferencia)  # Verifico el error
     count += 1
 
 
@@ -98,7 +108,7 @@ while not(error<=tolera or count>iteraciones):
 vector_solution = np.transpose([vector_solution])
 converge = count > iteraciones
 
-# rComprobar que Ax y b son iguales o aproximados
+# Comprobar con np.dot que Ax y b son iguales o aproximados y en seguida lo guardo en un array con np.array
 verifica = np.array([ float("{:.3f}".format(value[0]))  for value in np.dot(matriz, vector_solution)])
 
 # SALIDA

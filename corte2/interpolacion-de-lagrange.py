@@ -1,41 +1,33 @@
 import numpy as np
 import sympy as sym
 
-xi=np.array([0,0.2,0.3,0.4])
-fi=np.array([1,1.6,1.7,2.0])
+vector_x=np.array([1,3,5,])
+vector_y=np.array([4.75,5.25,19.75])
 
 #procedimiento
-n=len(xi)
-x=sym.Symbol('x')
-polinomio=0
 
-for i in range(0,n,1):
+xp = sym.Symbol('x')
+polinomio = 0
+
+for i in range(len(vector_x)):
     numerador=1
     denominador=1
     
-    for j in range (0,n,1):
+    for j in range (len(vector_x)):
     
         if (i!=j):
     
-            numerador=numerador*(x-xi[j])
+            numerador *= (xp-vector_x[j])
     
-            denominador= denominador *(xi[i]-xi[j])
+            denominador *= (vector_x[i]-vector_x[j])
         
-        termino=(numerador/denominador)*fi[i]
+        termino=(numerador/denominador)*vector_y[i]
     
     polinomio=polinomio+termino
 
 polisimple=sym.expand(polinomio)
-px=sym.lambdify(x,polinomio)
-#vectores para graficas
-muestras=51
-a=np.min(xi)
-b=np.max(xi)
-p_xi=np.linspace(a,b,muestras)
-pfi=px(p_xi)
+px=sym.lambdify(xp,polinomio)
 
-print("polinomio")
-print(polinomio)
-print("polisimple")
+
 print(polisimple)
 

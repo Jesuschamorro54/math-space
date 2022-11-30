@@ -1,1 +1,125 @@
-<p>gauss-seidel works!</p>
+<header>
+    <div class="pagetitle"><h1>Solucion de ecuaciones por metodo de Gauss Seidel</h1></div>
+    <button class="green" (click)="resolve()">
+        <div class="spinner outside primary" *ngIf="sending">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <span>Convertir</span>
+    </button>
+</header>
+
+<section class="section-body">
+
+    <div class="content-input">
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="controller">
+                    
+                    <div class="custom-select">
+                        <label class="select_list_2 dropdown"
+                            (click)="ddownMethod.checked ? ddownMethod.checked = false : ddownMethod.checked = true;"
+                            (clickOutsideDdown)="ddownMethod.checked = false;">
+    
+                            <span>{{precision[selected].label }}</span>
+                            <i class="icon-arrow-down"></i>
+                            <input type="checkbox" #ddownMethod>
+    
+                            <ul class="dropdown-list" *ngIf="ddownMethod.checked">
+                                <li class="item" (click)="selected = 0 ">Sistema de ecuación</li>
+                                <li class="item" (click)="selected = 1 ">Matriz</li>
+                            </ul>
+                        </label>
+                    </div>
+
+                    <button class="read-btn blue" (click)="readMatriz()">
+                        Leer datos <i class="icon-done-all" style="margin: 0 7px;"></i>
+                    </button>
+                </div>
+    
+                <form class="formdata">
+                    <div class="textarea-box">
+                        <textarea name="area" id="" cols="30" rows="10" [placeholder]=" selected == 0 ? placeholders[0] : placeholders[1] " [(ngModel)]="textArea" ></textarea>
+                    </div>
+                </form>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="content-output">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="matriz-box" *ngIf="matriz.length != 0">
+
+                    <div class="row title">MATRIZ: A</div>
+
+                    <div class="row" *ngFor="let row of matriz; index as i">
+                        <div #columnMatriz class="column" *ngFor="let col of matriz[i]; index as j" [ngStyle]="applyStyle()">
+                            <span class="item">{{matriz[i][j]}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <span style="font-weight: bold; align-self: center;"*ngIf="matriz.length != 0"> 
+                    = 
+                </span>
+
+                <div class="array-box" *ngIf="matriz.length != 0">
+                    <div class="row title">VECTOR: b</div>
+
+                    <div class="row" *ngFor="let row of b_array; index as i">
+                        <div class="column" [ngStyle]="applyStyle(true)">
+                            <span class="item">{{row}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<section class="section-body">
+
+    <!-- <div class="content-input"></div> -->
+
+    <div class="content-output result" style="margin: 0px 0px 16px 0px;">
+        <div class="card" style="min-width: auto;">
+            <div class="card-body" style="min-height: auto; height: auto; flex-direction: column;">
+                
+                <div class="head">
+                    <h2>Resultado</h2>
+                    <span *ngIf="solution.converge" class="error-item">Converge</span>
+                </div>
+                
+
+
+
+                <h4>Matriz Ax: </h4>
+                <section class="result" style="display: flex; overflow-x: auto;">
+                    <span *ngFor="let item of solution.matrizAx; index">
+                        <div class="value" name="index" type="text">{{item}}</div>
+                    </span>
+                </section>
+
+                <h4>Solución: </h4>
+                <section class="result" style="display: flex; overflow-x: auto;">
+                    <span *ngFor="let item of solution.solution; index">
+                        <div class="value" name="index" type="text">{{item}}</div>
+                    </span>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</section>

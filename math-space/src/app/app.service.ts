@@ -48,6 +48,32 @@ export class AppService {
     );
   }
 
+  public resolveGaussSeidel(body:any): Observable<any> {
+    return this._http.post(this.ApiUrl + "/gauss-seidel", body, this.getHeaders()).pipe(
+      map((response:any) =>{
+
+        const {status, data} = response
+        return {valid: status, result: data}
+
+      }),
+      
+      catchError(this.handleError<any>('getLoans', []))
+    );
+  }
+
+  public resolveInterpolation(body:any): Observable<any> {
+    return this._http.post(this.ApiUrl + "/lagrange", body, this.getHeaders()).pipe(
+      map((response:any) =>{
+
+        const {status, data} = response
+        return {valid: status, result: data}
+
+      }),
+      
+      catchError(this.handleError<any>('getLoans', []))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
