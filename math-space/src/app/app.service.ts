@@ -74,6 +74,19 @@ export class AppService {
     );
   }
 
+  public searchMethod(body:any, method: string): Observable<any> {
+    return this._http.post(this.ApiUrl + method, body, this.getHeaders()).pipe(
+      map((response:any) =>{
+
+        const {status, data} = response
+        return {valid: status, result: data}
+
+      }),
+      
+      catchError(this.handleError<any>('getLoans', []))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

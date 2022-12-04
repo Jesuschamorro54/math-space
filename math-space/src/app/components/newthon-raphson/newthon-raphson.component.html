@@ -1,0 +1,73 @@
+<header>
+    <div class="pagetitle"><h1>Método de Newton Raphson</h1></div>
+    <button class="green" (click)="onSubmit()">
+        <div class="spinner outside primary"  *ngIf="sending">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <span>Encontrar raíz</span>
+    </button>
+</header>
+
+<section class="newton-content">
+    <div class="card">
+        <div class="card-body">
+            <form>
+
+                <section style="display: flex; width: 90%; justify-content: center;">
+                    <label for="initial" style="align-self: center;"><p>x<sub>0</sub></p></label>
+                    <input type="number" placeholder="x0" name="initial0" style="width: 10rem;" [(ngModel)]="initialValues.x0">
+                </section>
+
+                <input type="text" placeholder="Polinomio" name="polinomio" [(ngModel)]="initialValues.equation">
+
+                <div class="custom-select">
+                    <label class="select_list_2 dropdown"
+                        (click)="ddownMethod.checked ? ddownMethod.checked = false : ddownMethod.checked = true;"
+                        (clickOutsideDdown)="ddownMethod.checked = false;">
+
+                        <span [innerHTML]="tolerancia[selected].label"></span>
+                        <i class="icon-arrow-down"></i>
+                        <input type="checkbox" #ddownMethod>
+
+                        <ul class="dropdown-list" *ngIf="ddownMethod.checked">
+                            <li class="item" *ngFor="let item of tolerancia; index as i" (click)="selected = i " [innerHTML]="tolerancia[i].label"></li>
+                        </ul>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="accordion" *ngFor="let result of results; index as i">
+        <input type="radio" name="radio-a" id="check{{i}}">
+        <label class="accordion-label" for="check{{i}}">Iteración {{i}} <span>Error: {{result.e_value}} </span></label>
+        <div class="accordion-content">
+            <div class="results">
+
+                <div class="values">
+                    <!-- Puntos -->
+                    <div class="points">
+                        <label for="a_value"><p>x<sub>{{i}}</sub></p></label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.xi_value">
+
+                        <label for="b_value"><p>x<sub>{{i+1}}</sub></p></label>
+                        <input name="b_value" type="text" disabled [(ngModel)]="result.xiplus1_value">
+                    </div>
+                    <!-- Evaluado en la función -->
+                    <div class="points-evaluations">
+                        <label for="c_value"><p>f(x<sub>{{i}}</sub>)</p></label>
+                        <input name="c_value" type="text" disabled [(ngModel)]="result.fxi_value">
+                    </div>
+                    <!-- Derivada -->
+                    <div class="points-derivate">
+                        <label for="d_value"><p> <sup>Dy</sup>/ <sub>Dx<sub>{{i}}</sub></sub></p></label>
+                        <input name="d_value" type="text" disabled [(ngModel)]="result.fxi_derivative_value">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

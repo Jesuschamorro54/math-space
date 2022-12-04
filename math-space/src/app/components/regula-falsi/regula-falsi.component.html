@@ -1,0 +1,85 @@
+<header>
+    <div class="pagetitle"><h1>Método de Regla falsa</h1></div>
+    <button class="green" (click)="onSubmit()">
+        <div class="spinner outside primary"  *ngIf="sending">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <span>Encontrar raíz</span>
+    </button>
+</header>
+
+<section class="rule-content">
+    <div class="card">
+        <div class="card-body">
+            <form>
+
+                <section style="display: flex; width: 90%; justify-content: center;">
+                    <label for="initial0"><p>x<sub>0</sub></p></label>
+                    <input type="number" placeholder="x0" name="initial0" style="width: 10rem;" [(ngModel)]="initialValues.value_a">
+                    <label for="initial0"><p>x<sub>1</sub></p></label>
+                    <input type="number" placeholder="x1" name="initial1" style="width: 10rem;" [(ngModel)]="initialValues.value_b">
+                </section>
+
+                <input type="text" placeholder="Polinomio" name="polinomio" [(ngModel)]="initialValues.equation">
+
+                <div class="custom-select">
+                    <label class="select_list_2 dropdown"
+                        (click)="ddownMethod.checked ? ddownMethod.checked = false : ddownMethod.checked = true;"
+                        (clickOutsideDdown)="ddownMethod.checked = false;">
+
+                        <span [innerHTML]="tolerancia[selected].label"></span>
+                        <i class="icon-arrow-down"></i>
+                        <input type="checkbox" #ddownMethod>
+
+                        <ul class="dropdown-list" *ngIf="ddownMethod.checked">
+                            <li class="item" *ngFor="let item of tolerancia; index as i" (click)="selected = i " [innerHTML]="tolerancia[i].label"></li>
+                        </ul>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="accordion" *ngFor="let result of results; index as i">
+        <input type="radio" name="radio-a" id="check{{i}}">
+        <label class="accordion-label" for="check{{i}}">Iteración {{i}} <span>Error: {{result.error_value}} </span></label>
+        <div class="accordion-content">
+            <div class="results">
+
+                <div class="values" style="display: flex;">
+                    <div class="points" style="padding: 0px 15px;">
+                        <label for="a_value">a</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.a_value">
+
+                        <label for="a_value">b</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.b_value">
+
+                        <label for="a_value">x</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.x_value">
+                    </div>
+                    <div class="points-evaluations">
+                        <label for="a_value">f(a)</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.fa_value">
+
+                        <label for="a_value">f(b)</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.fb_value">
+
+                        <label for="a_value">f(x)</label>
+                        <input name="a_value" type="text" disabled [(ngModel)]="result.fx_value">
+                    </div>
+                </div>
+
+                
+
+                
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>

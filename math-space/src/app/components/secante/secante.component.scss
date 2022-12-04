@@ -1,0 +1,24 @@
+@import "../../app.component.scss";
+@import "../../styles/spinners";
+@import "../../styles/colors";
+
+
+.secante-content .results .values label{
+    margin: 10px;
+    margin: 14px;
+    font-size: large;
+    font-weight: 700;
+}
+
+.secante-content .results .points, 
+.secante-content .results .points-evaluations {
+    padding: 0px 15px;
+    display: flex;
+}
+
+.secante-content .card .card-body .custom-select label {
+    width: 90%;
+    height: 32px;
+    margin: 10px;
+    padding: 10px;
+}

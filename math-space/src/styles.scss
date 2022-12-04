@@ -230,6 +230,83 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.accordion {
+  width: 100%;
+  color: $primary-text;
+  overflow: hidden;
+  margin-bottom: 16px;
+
+  &:last-child {
+      margin-bottom: 0;
+  }
+
+  .accordion-label {
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      padding: 16px;
+      background: white;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 20px;
+      transition-property: background, color; 
+      transition-duration:  200ms;
+      transition-timing-function: ease-out; 
+
+      &:hover {
+          color: white;
+          background: rgba($color: $primary-color, $alpha: 0.8);
+      }
+
+      &::after {
+          content: "\276F";
+          width: 16px;
+          height: 16px;
+          text-align: center;
+          -webkit-transition: all 0.3s;
+          transition: all 0.3s;
+      }
+  }
+  
+  .accordion-content {
+      max-height: 0;
+      padding: 0 16px;
+      color: rgba(4,57,94,1);
+      background: white;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+
+      p {
+          margin: 0;
+          color: $primary-color;
+          font-size: 18px;
+      }
+
+  }
+
+  input[type=radio] {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+  }
+  
+  input:checked + .accordion-label {
+      color: white;
+      background: rgba($color: $primary-color, $alpha: 0.8);
+  }
+
+  input:checked + .accordion-label::after {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+  }
+
+  input:checked ~ .accordion-content {
+      max-height: 100vh;
+      padding: 16px;
+  }
+}
+
 
 // scrollbar
 * {

@@ -48,9 +48,9 @@ export class FloatingPointComponent implements OnInit {
         const { valid, result } = response
 
         if (valid) {
-          if (this.decimalToFloat){
+          if (this.decimalToFloat) {
             this.binary_number = result.split(" ")
-          }else{
+          } else {
             this.decimal_number = result
           }
         }

@@ -9,6 +9,10 @@ import { GaussJordanComponent } from './components/gauss-jordan/gauss-jordan.com
 import { InterpolationComponent } from './components/interpolation/interpolation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BisectionComponent } from './components/bisection/bisection.component';
+import { SecanteComponent } from './components/secante/secante.component';
+import { NewthonRaphsonComponent } from './components/newthon-raphson/newthon-raphson.component';
+import { RegulaFalsiComponent } from './components/regula-falsi/regula-falsi.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     FloatingPointComponent,
     GaussSeidelComponent,
     GaussJordanComponent,
-    InterpolationComponent
+    InterpolationComponent,
+    BisectionComponent,
+    SecanteComponent,
+    NewthonRaphsonComponent,
+    RegulaFalsiComponent
   ],
   imports: [
     BrowserModule,

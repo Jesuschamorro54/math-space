@@ -1,0 +1,17 @@
+@import "../../app.component.scss";
+@import "../../styles/spinners";
+@import "../../styles/colors";
+
+.rule-content .results .values label{
+    margin: 10px;
+    margin: 14px;
+    font-size: large;
+    font-weight: 700;
+}
+
+.rule-content .card .card-body .custom-select label {
+    width: 90%;
+    height: 32px;
+    margin: 10px;
+    padding: 10px;
+}
