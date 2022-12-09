@@ -47,7 +47,7 @@ export class GaussJordanComponent implements OnInit {
   matriz: Array<any> = []
   b_array: Array<any> = []
 
-  solution: Array<any> | null = [];
+  solution = {'solution': [], 'matrizAx': [], 'converge': false};
 
 
   ngOnInit(): void {
@@ -121,12 +121,15 @@ export class GaussJordanComponent implements OnInit {
         const { valid, result, Mstate } = response
 
         if (valid) {
-          
+
+          console.log(result)
+
           let temp_solution = result.solution
 
           temp_solution = temp_solution.split("\n").join(",").match(/\d+(?:\.\d+)?/g)?.map(Number)
 
-          this.solution = temp_solution
+          this.solution.solution = temp_solution;
+          this.solution.converge = !Mstate;
 
           console.log(this.solution)
         }

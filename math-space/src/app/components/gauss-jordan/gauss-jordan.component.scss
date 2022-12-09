@@ -67,6 +67,18 @@
         display: flex;
     }
 
+    .card-body .head {
+        display: flex;
+        
+        .error-item {
+            background: #e05151;
+            padding: 2px 7px;
+            border-radius: 30px;
+            color: white;
+            margin: 10px;
+        }
+    }
+
 
     // Diseño de la matriz
     .card-body .matriz-box {

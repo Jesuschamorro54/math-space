@@ -96,10 +96,13 @@
         <div class="card">
             <div class="card-body" style="min-height: auto; height: auto; flex-direction: column;">
 
-                <h2>Resultado</h2>
+                <div class="head">
+                    <h2>Resultado</h2>
+                    <span *ngIf="solution.converge" class="error-item">Converge</span>
+                </div>
 
                 <section class="result" style="display: flex;">
-                    <span *ngFor="let item of solution; index">
+                    <span *ngFor="let item of solution.solution; index">
                         <div class="value" name="index" type="text">{{item}}</div>
                     </span>
                 </section>
